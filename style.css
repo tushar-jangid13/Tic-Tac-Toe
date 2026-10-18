@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    color-scheme: dark;
+    --page: #10131b;
+    --surface: #191e2a;
+    --cell: #202635;
+    --line: #343c4e;
+    --text: #f5f3ed;
+    --muted: #a3aabd;
+    --mint: #86efc5;
+    --coral: #ff967d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 52px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(92, 111, 167, .22), transparent 52%),
+        var(--page);
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1 {
+    margin: 0 0 28px;
+    font: 700 clamp(2.2rem, 7vw, 3.5rem)/1.1 'Space Grotesk', sans-serif;
+    letter-spacing: -.06em;
+}
+
+#content {
+    width: min(88vw, 460px);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 28px;
+    background: rgba(25, 30, 42, .82);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .32), inset 0 1px rgba(255, 255, 255, .04);
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.box {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 19px;
+    background: linear-gradient(145deg, #252c3c, var(--cell));
+    color: var(--mint);
+    font: 700 clamp(3rem, 15vw, 5rem)/1 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+
+.box:hover:enabled {
+    transform: translateY(-3px);
+    border-color: #67738d;
+    background: #2a3244;
+    box-shadow: 0 9px 22px rgba(0, 0, 0, .2);
+}
+
+.box:enabled:active {
+    transform: scale(.97);
+}
+
+.box:disabled {
+    cursor: default;
+}
+
+.box:nth-child(even) {
+    color: var(--coral);
+}
+
+#reset-btn,
+#new-btn {
+    margin: 20px auto 0;
+    padding: 12px 22px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 999px;
+    background: #e9e7df;
+    color: #191d26;
+    font: 700 .9rem 'DM Sans', sans-serif;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: transform .16s ease, background .16s ease;
+}
+
+#reset-btn:hover,
+#new-btn:hover {
+    transform: translateY(-2px);
+    background: #fff;
+}
+
+.msgcontainer {
+    position: fixed;
+    z-index: 2;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: rgba(12, 15, 22, .88);
+    backdrop-filter: blur(10px);
+}
+
+.msgcontainer.hide {
+    display: none;
+}
+
+#msg {
+    margin: 0;
+    color: var(--mint);
+    font: 700 clamp(2rem, 8vw, 4.5rem)/1.1 'Space Grotesk', sans-serif;
+    letter-spacing: -.05em;
+}
+
+.hide {
+    display: none;
+}
+
+button:focus-visible {
+    outline: 3px solid var(--mint);
+    outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+    body { padding-top: 38px; }
+    #content { padding: 14px; border-radius: 23px; }
+    .game { gap: 9px; }
+    .box { border-radius: 15px; }
+}
